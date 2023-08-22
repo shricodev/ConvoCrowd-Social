@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ConvoCrowd",
-  description: "A social media platform for unopenionated conversations",
+  description: "A social media platform for unopinionated conversations",
 };
 
 export default function RootLayout({
