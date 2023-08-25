@@ -39,24 +39,30 @@ model Session {
 }
 
 model User {
-  id              String     @id @default(cuid())
-  name            String?
-  email           String?    @unique
-  username        String?    @unique
-  emailVerified   DateTime?
-  createdSubConvo SubConvo[] @relation("CreatedBy")
+  id               String         @id @default(cuid())
+  name             String?
+  email            String?        @unique
+  emailVerified    DateTime?
+  createdSubconvos Subconvo[]     @relation("CreatedBy")
+  subscriptions    Subscription[]
+  votes            Vote[]
 
-  image        String?
-  accounts     Account[]
-  sessions     Session[]
-  Post         Post[]
-  Comment      Comment[]
-  CommentVote  CommentVote[]
-  Vote         Vote[]
-  Subscription Subscription[]
+  username String? @unique
+
+  image       String?
+  accounts    Account[]
+  sessions    Session[]
+  Post        Post[]
+  Comment     Comment[]
+  CommentVote CommentVote[]
 }
 
-model SubConvo {
+enum VoteType {
+  UP
+  DOWN
+}
+
+model Subconvo {
   id        String   @id @default(cuid())
   name      String   @unique
   createdAt DateTime @default(now())
@@ -73,25 +79,24 @@ model SubConvo {
 model Subscription {
   user       User     @relation(fields: [userId], references: [id])
   userId     String
-  subConvo   SubConvo @relation(fields: [subConvoId], references: [id])
-  subConvoId String
+  subconvo   Subconvo @relation(fields: [subconvoId], references: [id])
+  subconvoId String
 
-  @@id([userId, subConvoId])
+  @@id([userId, subconvoId])
 }
 
 model Post {
-  id         String   @id @default(cuid())
+  id         String    @id @default(cuid())
   title      String
   content    Json?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  subConvo   SubConvo @relation(fields: [subConvoId], references: [id])
-  subConvoId String
-
-  author   User      @relation(fields: [authorId], references: [id])
-  authorId String
-  comments Comment[]
-  votes    Vote[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  author     User      @relation(fields: [authorId], references: [id])
+  authorId   String
+  subconvo   Subconvo  @relation(fields: [subconvoId], references: [id])
+  subconvoId String
+  comments   Comment[]
+  votes      Vote[]
 }
 
 model Comment {
@@ -100,7 +105,7 @@ model Comment {
   createdAt DateTime @default(now())
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
-  post      Post     @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId    String
 
   replyToId String?
@@ -114,22 +119,17 @@ model Comment {
 model Vote {
   user   User     @relation(fields: [userId], references: [id])
   userId String
-  post   Post     @relation(fields: [postId], references: [id])
+  post   Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId String
   type   VoteType
 
   @@id([userId, postId])
 }
 
-enum VoteType {
-  UP
-  DOWN
-}
-
 model CommentVote {
   user      User     @relation(fields: [userId], references: [id])
   userId    String
-  comment   Comment  @relation(fields: [commentId], references: [id])
+  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
   commentId String
   type      VoteType
 
