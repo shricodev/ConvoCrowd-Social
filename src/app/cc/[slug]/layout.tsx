@@ -1,11 +1,11 @@
-import SubscribeLeaveSubconvoToggle from "@/components/SubscribeLeaveSubconvoToggle/SubscribeLeaveSubconvoToggle";
+import { FC, ReactNode } from "react";
 import { Button } from "@/components/ui/Button";
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { format } from "date-fns";
 import { notFound } from "next/navigation";
-import { FC, ReactNode } from "react";
+import SubscribeLeaveSubconvoToggle from "@/components/SubscribeLeaveSubconvoToggle/SubscribeLeaveSubconvoToggle";
 
 interface LayoutProps {
   children: ReactNode;
@@ -84,13 +84,17 @@ const Layout: FC<LayoutProps> = async ({ children, params: { slug } }) => {
               </div>
 
               {subconvo.creatorId === session?.user.id ? (
-                <div className="flex justify-between gap-x-4 py-3 ">
+                <div className="flex justify-between gap-x-4 py-3">
                   <p className="text-gray-500">You created this community</p>
                 </div>
               ) : null}
 
               {subconvo.creatorId !== session?.user.id ? (
-                <SubscribeLeaveSubconvoToggle />
+                <SubscribeLeaveSubconvoToggle
+                  subconvoId={subconvo.id}
+                  subconvoName={subconvo.name}
+                  isSubscribed={isSubscribed}
+                />
               ) : null}
             </dl>
           </div>

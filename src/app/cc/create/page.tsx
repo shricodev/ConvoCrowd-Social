@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import type { CreateSubConvoPayload } from "@/lib/validators/subconvo";
+import type { CreateSubconvoPayload } from "@/lib/validators/subconvo";
 import { StatusCodes } from "http-status-codes";
 import { toast } from "@/hooks/use-toast";
 import { useCustomToast } from "@/hooks/use-custom-toast";
@@ -20,7 +20,7 @@ const Page: FC<pageProps> = ({}) => {
 
   const { mutate: createCommunity, isLoading } = useMutation({
     mutationFn: async () => {
-      const payload: CreateSubConvoPayload = {
+      const payload: CreateSubconvoPayload = {
         name: input,
       };
       const { data } = await axios.post("/api/subconvo", payload);
@@ -50,7 +50,7 @@ const Page: FC<pageProps> = ({}) => {
           return loginToast();
         }
       }
-      toast({
+      return toast({
         title: "Something went wrong. Please try again later",
         description: "Could not create the subconvo",
         variant: "default",

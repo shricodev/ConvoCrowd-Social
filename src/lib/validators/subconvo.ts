@@ -1,14 +1,14 @@
 import { z } from "zod";
 
-export const subconvoValidator = z.object({
+export const SubconvoValidator = z.object({
   name: z.string().min(3).max(21),
 });
 
-export const subconvoSubscriptionValidator = z.object({
-  subConvoId: z.string(),
+export const SubconvoSubscriptionValidator = z.object({
+  subconvoId: z.string(),
 });
 
-export type CreateSubConvoPayload = z.infer<typeof subconvoValidator>;
-export type SubscribeToSubConvoPayload = z.infer<
-  typeof subconvoSubscriptionValidator
+export type CreateSubconvoPayload = z.infer<typeof SubconvoValidator>;
+export type SubscribeToSubconvoPayload = z.infer<
+  typeof SubconvoSubscriptionValidator
 >;

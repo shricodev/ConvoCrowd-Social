@@ -1,6 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { subconvoValidator } from "@/lib/validators/subconvo";
+import { SubconvoValidator } from "@/lib/validators/subconvo";
 import { NextRequest, NextResponse } from "next/server";
 import { StatusCodes } from "http-status-codes";
 import { z } from "zod";
@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
     const body = await req.json();
-    const { name } = subconvoValidator.parse(body);
+    const { name } = SubconvoValidator.parse(body);
 
     const subConvoExists = await db.subconvo.findFirst({
       where: {
