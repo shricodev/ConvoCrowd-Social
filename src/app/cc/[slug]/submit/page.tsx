@@ -39,7 +39,7 @@ const page: FC<PageProps> = async ({ params }) => {
       <div className="flex w-full justify-end">
         <Button
           type="submit"
-          className="w-full focus:bg-zinc-500"
+          className="w-full active:bg-zinc-500"
           form="subconvo-post-form"
         >
           Post

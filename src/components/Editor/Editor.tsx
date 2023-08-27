@@ -12,6 +12,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { toast } from "@/hooks/use-toast";
 
+import "@/lib/styles/editor.css";
 import { uploadFiles } from "@/lib/uploadthing";
 import { PostCreationRequest, postValidator } from "@/lib/validators/post";
 
@@ -19,14 +20,7 @@ interface EditorProps {
   subconvoId: string;
 }
 
-const Editor: FC<EditorProps> = ({ subconvoId }) => {
-  const ref = useRef<EditorJS | null | undefined>(null);
-  const [isMounted, setIsMounted] = useState<boolean>(false);
-  const _titleRef = useRef<HTMLTextAreaElement | null>(null);
-  const pathname = usePathname();
-  const router = useRouter();
-
-  // enforce type safety on form with zodResolver
+export const Editor: FC<EditorProps> = ({ subconvoId }) => {
   const {
     register,
     handleSubmit,
@@ -37,6 +31,37 @@ const Editor: FC<EditorProps> = ({ subconvoId }) => {
       subconvoId,
       title: "",
       content: null,
+    },
+  });
+  const ref = useRef<EditorJS>();
+  const _titleRef = useRef<HTMLTextAreaElement>(null);
+  const router = useRouter();
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+  const pathname = usePathname();
+
+  const { mutate: createPost } = useMutation({
+    mutationFn: async ({ title, content, subconvoId }: PostCreationRequest) => {
+      const payload: PostCreationRequest = { title, content, subconvoId };
+      const { data } = await axios.post("/api/subconvo/post/create", payload);
+      return data;
+    },
+    onError: () => {
+      return toast({
+        title: "Something went wrong.",
+        description: "Your post was not published. Please try again.",
+        variant: "destructive",
+      });
+    },
+    onSuccess: () => {
+      // remove /create from the current pathname
+      const newPathname = pathname.split("/").slice(0, -1).join("/");
+      router.push(newPathname);
+
+      router.refresh();
+
+      return toast({
+        description: "Your post has been published.",
+      });
     },
   });
 
@@ -59,9 +84,7 @@ const Editor: FC<EditorProps> = ({ subconvoId }) => {
         },
         placeholder: "Write your post here...",
         inlineToolbar: true,
-        data: {
-          blocks: [],
-        },
+        data: { blocks: [] },
         tools: {
           header: Header,
           linkTool: {
@@ -75,6 +98,7 @@ const Editor: FC<EditorProps> = ({ subconvoId }) => {
             config: {
               uploader: {
                 async uploadByFile(file: File) {
+                  // upload to uploadthing
                   const [res] = await uploadFiles([file], "imageUploader");
 
                   return {
@@ -89,8 +113,8 @@ const Editor: FC<EditorProps> = ({ subconvoId }) => {
           },
           list: List,
           code: Code,
-          table: Table,
           inlineCode: InlineCode,
+          table: Table,
           embed: Embed,
         },
       });
@@ -98,17 +122,11 @@ const Editor: FC<EditorProps> = ({ subconvoId }) => {
   }, []);
 
   useEffect(() => {
-    // if we're on the client, initialize the editor
-    if (typeof window !== "undefined") {
-      setIsMounted(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (Object.keys(errors).length > 0) {
+    if (Object.keys(errors).length) {
       for (const [_key, value] of Object.entries(errors)) {
+        value;
         toast({
-          title: "Something went wrong!",
+          title: "Something went wrong.",
           description: (value as { message: string }).message,
           variant: "destructive",
         });
@@ -117,64 +135,45 @@ const Editor: FC<EditorProps> = ({ subconvoId }) => {
   }, [errors]);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMounted(true);
+    }
+  }, []);
+
+  useEffect(() => {
     const init = async () => {
       await initializeEditor();
 
       setTimeout(() => {
-        // set focus to the title of the editor
-        _titleRef.current?.focus();
+        _titleRef?.current?.focus();
       }, 0);
     };
 
     if (isMounted) {
       init();
+
       return () => {
         ref.current?.destroy();
         ref.current = undefined;
       };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMounted, initializeEditor]);
 
   async function onSubmit(data: PostCreationRequest) {
     const blocks = await ref.current?.save();
+
     const payload: PostCreationRequest = {
       title: data.title,
       content: blocks,
       subconvoId,
     };
+
     createPost(payload);
   }
 
-  const { mutate: createPost } = useMutation({
-    mutationFn: async ({ title, content, subconvoId }: PostCreationRequest) => {
-      const payload: PostCreationRequest = {
-        title,
-        content,
-        subconvoId,
-      };
-      const { data } = await axios.post("/api/subconvo/post/create", payload);
-      return data;
-    },
-    onError: () => {
-      return toast({
-        title: "Something went wrong!",
-        description: "Your post could not be created. Please try again later",
-        variant: "destructive",
-      });
-    },
-    onSuccess: () => {
-      const newPath = pathname.split("/").slice(0, -1).join("/");
-      router.push(newPath);
-
-      router.refresh();
-
-      return toast({
-        description: "Your post has been created!",
-        variant: "default",
-      });
-    },
-  });
+  if (!isMounted) {
+    return null;
+  }
 
   const { ref: titleRef, ...rest } = register("title");
 
@@ -189,6 +188,7 @@ const Editor: FC<EditorProps> = ({ subconvoId }) => {
           <TextareaAutosize
             ref={(e) => {
               titleRef(e);
+              // @ts-ignore
               _titleRef.current = e;
             }}
             {...rest}
@@ -196,6 +196,13 @@ const Editor: FC<EditorProps> = ({ subconvoId }) => {
             className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none"
           />
           <div id="editor" className="min-h-[500px]" />
+          <p className="text-sm text-gray-500">
+            Use{" "}
+            <kbd className="rounded-md border bg-muted px-1 text-xs uppercase">
+              Tab
+            </kbd>{" "}
+            to open the command menu.
+          </p>
         </div>
       </form>
     </div>

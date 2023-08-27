@@ -21,7 +21,7 @@ const SmallCreatePost: FC<SmallCreatePostProps> = ({ session }) => {
 
   return (
     <>
-      <li className="list-none overflow-hidden rounded-md bg-white shadow">
+      <li className="list-none overflow-hidden rounded-full bg-white shadow">
         <div className="flex h-full justify-between gap-6 px-6 py-4">
           <div className="relative ">
             <UserAvatar

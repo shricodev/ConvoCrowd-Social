@@ -7,6 +7,7 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { db } from "@/lib/db";
 import { getAuthSession } from "@/lib/auth";
 
+import PostFeed from "@/components/PostFeed/PostFeed";
 import SmallCreatePost from "@/components/SmallCreatePost/SmallCreatePost";
 
 interface PageProps {
@@ -42,7 +43,11 @@ const page: FC<PageProps> = async ({ params }) => {
         cc/{subconvo.name}
       </h1>
       <SmallCreatePost session={session} />
-      {/* TODO: SHOW POSTS IN USER FEED */}
+      <PostFeed
+        session={session}
+        initialPosts={subconvo.posts}
+        subconvoName={subconvo.name}
+      />
     </>
   );
 };
