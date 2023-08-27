@@ -1,11 +1,12 @@
 import { FC } from "react";
 
 import Link from "next/link";
-
-import { buttonVariants } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
 import { ChevronLeft } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+
 import SignUp from "@/components/SignUp/SignUp";
+import { buttonVariants } from "@/components/ui/Button";
 
 const page: FC = () => {
   return (

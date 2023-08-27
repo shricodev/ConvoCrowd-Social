@@ -3,7 +3,7 @@ import { StatusCodes } from "http-status-codes";
 
 import { db } from "@/lib/db";
 import { getAuthSession } from "@/lib/auth";
-import { SubconvoSubscriptionValidator } from "@/lib/validators/subconvo";
+import { postValidator } from "@/lib/validators/post";
 
 export async function POST(req: Request) {
   try {
@@ -15,27 +15,28 @@ export async function POST(req: Request) {
       });
 
     const body = await req.json();
-    const { subconvoId } = SubconvoSubscriptionValidator.parse(body);
+    const { subconvoId, title, content } = postValidator.parse(body);
 
     const subscriptionExists = await db.subscription.findFirst({
       where: { subconvoId, userId: session.user.id },
     });
 
-    if (subscriptionExists) {
-      return new Response("Already subscribed", {
+    if (!subscriptionExists) {
+      return new Response("Subscribe to post", {
         status: StatusCodes.BAD_REQUEST,
       });
     }
 
-    // subscribe the user to the subconvo
-    await db.subscription.create({
+    await db.post.create({
       data: {
+        title,
+        content,
+        authorId: session.user.id,
         subconvoId,
-        userId: session.user.id,
       },
     });
 
-    return new Response(subconvoId);
+    return new Response("OK");
   } catch (error) {
     // if the zod parsing failed.
     if (error instanceof z.ZodError) {
@@ -44,7 +45,7 @@ export async function POST(req: Request) {
       });
     }
 
-    return new Response("Could not subscribe. Something went wrong.", {
+    return new Response("Could not post. Please try again later", {
       status: StatusCodes.INTERNAL_SERVER_ERROR,
     });
   }

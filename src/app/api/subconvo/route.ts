@@ -1,15 +1,15 @@
-import { getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { SubconvoValidator } from "@/lib/validators/subconvo";
-import { NextRequest, NextResponse } from "next/server";
-import { StatusCodes } from "http-status-codes";
 import { z } from "zod";
+import { StatusCodes } from "http-status-codes";
 
-export async function POST(req: NextRequest) {
+import { db } from "@/lib/db";
+import { getAuthSession } from "@/lib/auth";
+import { SubconvoValidator } from "@/lib/validators/subconvo";
+
+export async function POST(req: Request) {
   try {
     const session = await getAuthSession();
     if (!session?.user) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return new Response("Unauthorized", { status: StatusCodes.UNAUTHORIZED });
     }
     const body = await req.json();
     const { name } = SubconvoValidator.parse(body);
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     });
 
     if (subConvoExists) {
-      return new NextResponse("SubConvo already exists", {
+      return new Response("SubConvo already exists", {
         status: StatusCodes.CONFLICT,
       });
     }
@@ -39,15 +39,15 @@ export async function POST(req: NextRequest) {
         subconvoId: subConvo.id,
       },
     });
-    return new NextResponse(subConvo.name);
+    return new Response(subConvo.name);
   } catch (error) {
     // if the zod parsing failed.
     if (error instanceof z.ZodError) {
-      return new NextResponse(error.message, {
+      return new Response(error.message, {
         status: StatusCodes.UNPROCESSABLE_ENTITY,
       });
     }
-    return new NextResponse(
+    return new Response(
       "Could not create the community. Something went wrong.",
       { status: StatusCodes.INTERNAL_SERVER_ERROR },
     );

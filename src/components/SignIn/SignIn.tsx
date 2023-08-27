@@ -1,6 +1,9 @@
 import { FC } from "react";
-import { Icons } from "../Icons/Icons";
+
 import Link from "next/link";
+
+import { Icons } from "../Icons/Icons";
+
 import UserSignInForm from "../UserSignInForm/UserSignInForm";
 
 const SignIn: FC = () => {

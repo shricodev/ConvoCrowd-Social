@@ -1,12 +1,15 @@
 "use client";
 
-import { Session } from "next-auth";
-import { usePathname, useRouter } from "next/navigation";
 import { FC } from "react";
+
+import { Session } from "next-auth";
+import { Image, Link2 } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+
 import UserAvatar from "../UserAvatar/UserAvatar";
+
 import { Input } from "../ui/Input";
 import { Button } from "../ui/Button";
-import { Image, Link2 } from "lucide-react";
 
 interface SmallCreatePostProps {
   session: Session | null;

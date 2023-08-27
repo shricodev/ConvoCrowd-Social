@@ -1,7 +1,8 @@
 "use client";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FC } from "react";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface ProvidersProps {
   children: React.ReactNode;

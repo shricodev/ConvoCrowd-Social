@@ -1,19 +1,21 @@
 "use client";
 
-import axios, { AxiosError } from "axios";
 import { FC, useState } from "react";
-import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
+
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
-import type { CreateSubconvoPayload } from "@/lib/validators/subconvo";
 import { StatusCodes } from "http-status-codes";
+import { useMutation } from "@tanstack/react-query";
+
 import { toast } from "@/hooks/use-toast";
 import { useCustomToast } from "@/hooks/use-custom-toast";
 
-interface pageProps {}
+import type { CreateSubconvoPayload } from "@/lib/validators/subconvo";
 
-const Page: FC<pageProps> = ({}) => {
+import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button";
+
+const Page: FC = () => {
   const [input, setInput] = useState<string>("");
   const router = useRouter();
   const { loginToast } = useCustomToast();

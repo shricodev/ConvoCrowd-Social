@@ -1,11 +1,12 @@
 import { FC } from "react";
 
 import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
+
+import { cn } from "@/lib/utils";
 
 import SignIn from "@/components/SignIn/SignIn";
 import { buttonVariants } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
-import { ChevronLeft } from "lucide-react";
 
 const page: FC = () => {
   return (

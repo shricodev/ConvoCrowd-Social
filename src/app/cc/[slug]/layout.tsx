@@ -1,10 +1,15 @@
 import { FC, ReactNode } from "react";
-import { Button } from "@/components/ui/Button";
-import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
-import { getAuthSession } from "@/lib/auth";
-import { db } from "@/lib/db";
+
+import Link from "next/link";
 import { format } from "date-fns";
 import { notFound } from "next/navigation";
+
+import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
+
+import { db } from "@/lib/db";
+import { getAuthSession } from "@/lib/auth";
+
+import { Button, buttonVariants } from "@/components/ui/Button";
 import SubscribeLeaveSubconvoToggle from "@/components/SubscribeLeaveSubconvoToggle/SubscribeLeaveSubconvoToggle";
 
 interface LayoutProps {
@@ -96,6 +101,16 @@ const Layout: FC<LayoutProps> = async ({ children, params: { slug } }) => {
                   isSubscribed={isSubscribed}
                 />
               ) : null}
+
+              <Link
+                className={buttonVariants({
+                  variant: "subtle",
+                  className: "mb-6 w-full",
+                })}
+                href={`/cc/${subconvo.name}/submit`}
+              >
+                Create Post
+              </Link>
             </dl>
           </div>
         </div>

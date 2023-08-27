@@ -1,10 +1,15 @@
-import Link from "next/link";
 import { FC } from "react";
+
+import Link from "next/link";
+
 import { Icons } from "../Icons/Icons";
-import { buttonVariants } from "../ui/Button";
-import { getAuthSession } from "@/lib/auth";
+
 import UserAccountDropdown from "../UserAccountDropdown/UserAccountDropdown";
+
 import { cn } from "@/lib/utils";
+import { getAuthSession } from "@/lib/auth";
+
+import { buttonVariants } from "../ui/Button";
 
 const Navbar: FC = async () => {
   const session = await getAuthSession();
