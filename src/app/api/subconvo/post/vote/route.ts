@@ -1,11 +1,14 @@
+import { z } from "zod";
+import { StatusCodes } from "http-status-codes";
+
 import { CACHE_AFTER_UPVOTES } from "@/config";
-import { getAuthSession } from "@/lib/auth";
+
 import { db } from "@/lib/db";
 import { redis } from "@/lib/redis";
+import { getAuthSession } from "@/lib/auth";
 import { PostVoteValidator } from "@/lib/validators/vote";
+
 import type { CachedPost } from "@/types/redis";
-import { StatusCodes } from "http-status-codes";
-import { z } from "zod";
 
 export async function PATCH(req: Request) {
   try {

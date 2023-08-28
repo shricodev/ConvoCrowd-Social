@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 
 import axios from "axios";
 import { Session } from "next-auth";
@@ -12,6 +12,7 @@ import Post from "../Post/Post";
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 
 import type { ExtendedPost } from "@/types/db";
+import { Loader2 } from "lucide-react";
 
 interface PostFeedProps {
   initialPosts: ExtendedPost[];
@@ -49,6 +50,14 @@ const PostFeed: FC<PostFeedProps> = ({
       },
     },
   );
+
+  // if the user is intersecting with the last post then fetch other posts as well.
+  useEffect(() => {
+    if (!isFetchingNextPage && entry?.isIntersecting) {
+      fetchNextPage();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [entry, fetchNextPage]);
 
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 
@@ -91,6 +100,12 @@ const PostFeed: FC<PostFeedProps> = ({
           />
         );
       })}
+
+      {isFetchingNextPage && (
+        <li className="flex justify-center">
+          <Loader2 className="h-6 w-6 animate-spin text-zinc-500" />
+        </li>
+      )}
     </ul>
   );
 };

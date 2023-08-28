@@ -61,8 +61,7 @@ const Layout: FC<LayoutProps> = async ({ children, params: { slug } }) => {
 
   return (
     <div className="mx-auto h-full max-w-7xl pt-12 sm:container">
-      <div className="">
-        <Button variant="link" />
+      <div>
         <div className="grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4">
           <div className="col-span-2 flex flex-col space-y-6">{children}</div>
 
