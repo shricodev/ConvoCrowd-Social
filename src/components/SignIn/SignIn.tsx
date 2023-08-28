@@ -6,7 +6,11 @@ import { Icons } from "../Icons/Icons";
 
 import UserSignInForm from "../UserSignInForm/UserSignInForm";
 
-const SignIn: FC = () => {
+interface SignInProps {
+  isModal?: boolean;
+}
+
+const SignIn: FC<SignInProps> = ({ isModal = false }) => {
   return (
     <div className="container mx-auto flex w-full flex-col justify-center space-y-8 sm:w-[400px]">
       <div className="flex flex-col space-y-2 text-center">
@@ -26,6 +30,9 @@ const SignIn: FC = () => {
           <Link
             href="/sign-up"
             className="text-sm underline underline-offset-4 hover:text-zinc-800"
+            // adding this will replace the history stack instead of adding to the history stack.
+            // so our modal behaviour works as expected.
+            replace={isModal}
           >
             Sign Up
           </Link>

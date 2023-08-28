@@ -12,7 +12,7 @@ const page: FC = () => {
             <CloseModal />
           </div>
 
-          <SignIn />
+          <SignIn isModal={true} />
         </div>
       </div>
     </div>

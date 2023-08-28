@@ -11,7 +11,7 @@ const page: FC = () => {
             <CloseModal />
           </div>
 
-          <SignUp />
+          <SignUp isModal={true} />
         </div>
       </div>
     </div>
