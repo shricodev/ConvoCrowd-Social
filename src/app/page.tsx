@@ -1,17 +1,26 @@
 import Link from "next/link";
-import { HomeIcon } from "lucide-react";
+import { HomeIcon, Lightbulb } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/Button";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
 
 export default function Home() {
   return (
     <>
+      <Alert className="mb-8 w-fit shadow-md">
+        <Lightbulb className="h-4 w-4" />
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>
+          This is my personal project, I have used all the free apis. You might
+          experience some delay when requesting data.
+        </AlertDescription>
+      </Alert>
       <h1 className="text-3xl font-bold md:text-4xl ">Your Feed</h1>
       <div className="grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4">
         {/* feed */}
 
         {/* subconvo info */}
-        <div className="order-first h-fit overflow-hidden rounded-lg border border-gray-200 md:order-last">
+        <div className="order-first h-fit overflow-hidden rounded-lg border border-gray-200 shadow md:order-last">
           <div className="bg-gray-200 px-6 py-4">
             <p className="flex items-center gap-1.5 py-3 font-semibold">
               <HomeIcon className="h-4 w-4" />

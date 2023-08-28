@@ -71,6 +71,8 @@ const PostFeed: FC<PostFeedProps> = ({
           return (
             <li key={post.id} ref={ref}>
               <Post
+                votesCount={votesCount}
+                currentVote={currentVote}
                 commentCount={post.comments.length}
                 post={post}
                 subconvoName={post.subconvo.name}
@@ -80,9 +82,11 @@ const PostFeed: FC<PostFeedProps> = ({
         }
         return (
           <Post
+            key={post.id}
+            votesCount={votesCount}
+            currentVote={currentVote}
             commentCount={post.comments.length}
             post={post}
-            key={post.id}
             subconvoName={post.subconvo.name}
           />
         );

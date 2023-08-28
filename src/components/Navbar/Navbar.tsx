@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { getAuthSession } from "@/lib/auth";
 
 import { buttonVariants } from "../ui/Button";
+import { ModeToggle } from "../ui/ModeToggle";
 
 const Navbar: FC = async () => {
   const session = await getAuthSession();
@@ -27,13 +28,21 @@ const Navbar: FC = async () => {
 
         {/* search bar */}
 
-        {session?.user ? (
-          <UserAccountDropdown user={session.user} />
-        ) : (
-          <Link href="/sign-in" className={cn("select-none", buttonVariants())}>
-            Sign In
-          </Link>
-        )}
+        <div className="flex items-center gap-4">
+          {/* mode toggle: dark, light, system */}
+          <ModeToggle />
+
+          {session?.user ? (
+            <UserAccountDropdown user={session.user} />
+          ) : (
+            <Link
+              href="/sign-in"
+              className={cn("select-none", buttonVariants())}
+            >
+              Sign In
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

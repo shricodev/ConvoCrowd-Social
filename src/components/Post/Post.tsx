@@ -6,6 +6,9 @@ import { Post, User, Vote } from "@prisma/client";
 import EditorOutput from "../EditorOutput/EditorOutput";
 
 import { formatTimeToNow } from "@/lib/utils";
+import PostVoteClient from "../PostVote/PostVoteClient";
+
+type PartialVote = Pick<Vote, "type">;
 
 interface PostProps {
   subconvoName: string;
@@ -15,14 +18,27 @@ interface PostProps {
     votes: Vote[];
   };
   commentCount: number;
+  votesCount: number;
+  currentVote?: PartialVote;
 }
 
-const Post: FC<PostProps> = ({ subconvoName, post, commentCount }) => {
+const Post: FC<PostProps> = ({
+  subconvoName,
+  post,
+  commentCount,
+  votesCount,
+  currentVote,
+}) => {
   const postRef = useRef<HTMLDivElement>(null);
   return (
-    <div className="rounded-md bg-white shadow">
+    <div className="rounded-md bg-white shadow-md">
       <div className="flex justify-between px-6 py-4">
-        {/* TODO: POST VOTES */}
+        <PostVoteClient
+          postId={post.id}
+          initialVoteCount={votesCount}
+          initialVote={currentVote?.type}
+        />
+
         <div className="w-0 flex-1">
           <div className="mt-1 max-h-40 text-sm text-gray-500">
             {subconvoName ? (

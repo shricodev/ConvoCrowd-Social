@@ -30,7 +30,7 @@ const page: FC<PageProps> = async ({ params }) => {
           comments: true,
           subconvo: true,
         },
-        take: INFINITE_SCROLLING_PAGINATION_RESULTS,
+        take: 10,
       },
     },
   });

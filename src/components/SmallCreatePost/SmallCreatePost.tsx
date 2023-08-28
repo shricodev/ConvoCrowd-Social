@@ -21,7 +21,7 @@ const SmallCreatePost: FC<SmallCreatePostProps> = ({ session }) => {
 
   return (
     <>
-      <li className="list-none overflow-hidden rounded-full bg-white shadow">
+      <li className="list-none overflow-hidden rounded-full bg-white shadow-md">
         <div className="flex h-full justify-between gap-6 px-6 py-4">
           <div className="relative ">
             <UserAvatar
@@ -38,6 +38,7 @@ const SmallCreatePost: FC<SmallCreatePostProps> = ({ session }) => {
             readOnly
             onClick={() => router.push(pathname + "/submit")}
             placeholder="Create a Post.."
+            className="rounded-full"
           />
           <Button
             variant="ghost"
