@@ -43,7 +43,9 @@ const PostFeed: FC<PostFeedProps> = ({
       return data as ExtendedPost[];
     },
     {
-      getNextPageParam: (_, pages) => pages.length + 1,
+      getNextPageParam: (_, pages) => {
+        return pages.length + 1;
+      },
       initialData: {
         pages: [initialPosts],
         pageParams: [1],
@@ -103,7 +105,7 @@ const PostFeed: FC<PostFeedProps> = ({
 
       {isFetchingNextPage && (
         <li className="flex justify-center">
-          <Loader2 className="h-6 w-6 animate-spin text-zinc-500" />
+          <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
         </li>
       )}
     </ul>
