@@ -59,6 +59,14 @@ const Layout: FC<LayoutProps> = async ({ children, params: { slug } }) => {
     },
   });
 
+  const postCount = await db.post.count({
+    where: {
+      subconvo: {
+        name: slug,
+      },
+    },
+  });
+
   return (
     <div className="mx-auto h-full max-w-7xl pt-12 sm:container">
       <div>
@@ -84,6 +92,13 @@ const Layout: FC<LayoutProps> = async ({ children, params: { slug } }) => {
                 <dt className="text-gray-500">Members</dt>
                 <dd className="text-gray-700">
                   <div className="text-gray-900">{memberCount}</div>
+                </dd>
+              </div>
+
+              <div className="flex justify-between gap-x-4 py-3">
+                <dt className="text-gray-500">Posts</dt>
+                <dd className="text-gray-700">
+                  <div className="text-gray-900">{postCount}</div>
                 </dd>
               </div>
 

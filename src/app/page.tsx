@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HomeIcon, Lightbulb } from "lucide-react";
+import { Tent, Lightbulb } from "lucide-react";
 
 import { getAuthSession } from "@/lib/auth";
 
@@ -13,7 +13,7 @@ export default async function Home() {
 
   return (
     <>
-      <Alert className="mb-8 w-fit shadow-md">
+      <Alert className="mb-8 w-fit select-none shadow-md">
         <Lightbulb className="h-4 w-4" />
         <AlertTitle>Heads up!</AlertTitle>
         <AlertDescription>
@@ -30,7 +30,7 @@ export default async function Home() {
         <div className="order-first h-fit overflow-hidden rounded-lg border border-gray-200 shadow md:order-last">
           <div className="bg-gray-200 px-6 py-4">
             <p className="flex items-center gap-1.5 py-3 font-semibold">
-              <HomeIcon className="h-4 w-4" />
+              <Tent className="h-6 w-6" />
               Home
             </p>
           </div>
