@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import Link from "next/link";
 
 import { Icons } from "../Icons/Icons";
@@ -12,7 +10,7 @@ import { getAuthSession } from "@/lib/auth";
 import { buttonVariants } from "../ui/Button";
 import { ModeToggle } from "../ui/ModeToggle";
 
-const Navbar: FC = async () => {
+const Navbar = async () => {
   const session = await getAuthSession();
 
   return (

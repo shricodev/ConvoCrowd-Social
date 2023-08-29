@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { useState } from "react";
 
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
@@ -15,7 +15,7 @@ import type { CreateSubconvoPayload } from "@/lib/validators/subconvo";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 
-const Page: FC = () => {
+const Page = () => {
   const [input, setInput] = useState<string>("");
   const router = useRouter();
   const { loginToast } = useCustomToast();

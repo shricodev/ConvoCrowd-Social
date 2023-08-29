@@ -26,14 +26,14 @@ export default function RootLayout({
     <html lang="en" className={cn("light bg-white text-slate-900 antialiased")}>
       <body
         className={cn(
-          "min-h-screen bg-slate-50 pt-12 antialiased",
+          "min-h-screen bg-slate-50 pt-10 antialiased",
           inter.className,
         )}
       >
         <Providers>
           <Navbar />
           {authModal}
-          <div className="container h-full max-w-7xl pt-12">{children}</div>
+          <div className="container h-full max-w-7xl pt-10">{children}</div>
           <Toaster />
         </Providers>
       </body>

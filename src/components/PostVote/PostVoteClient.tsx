@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { FC, HTMLAttributes, useEffect, useState } from "react";
 
 import { VoteType } from "@prisma/client";
 import axios, { AxiosError } from "axios";
@@ -17,7 +17,7 @@ import { PostVoteRequest } from "@/lib/validators/vote";
 
 import { Button } from "../ui/Button";
 
-interface PostVoteClientProps {
+interface PostVoteClientProps extends HTMLAttributes<HTMLDivElement> {
   postId: string;
   initialVoteCount: number;
   initialVote?: VoteType | null;
@@ -27,6 +27,7 @@ const PostVoteClient: FC<PostVoteClientProps> = ({
   postId,
   initialVoteCount,
   initialVote,
+  className,
 }) => {
   const { loginToast } = useCustomToast();
   const [voteCount, setVoteCount] = useState<number>(initialVoteCount);
@@ -82,7 +83,12 @@ const PostVoteClient: FC<PostVoteClientProps> = ({
   });
 
   return (
-    <div className="flex flex-col gap-4 pb-4 pr-6 sm:w-20 sm:gap-0 sm:pb-0">
+    <div
+      className={cn(
+        "flex flex-col gap-4 pb-4 pr-6 sm:w-20 sm:gap-0 sm:pb-0",
+        className,
+      )}
+    >
       <Button
         onClick={() => vote("UP")}
         size="sm"

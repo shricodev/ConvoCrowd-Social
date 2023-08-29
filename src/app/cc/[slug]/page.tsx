@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { notFound } from "next/navigation";
 
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
@@ -16,7 +14,7 @@ interface PageProps {
   };
 }
 
-const page: FC<PageProps> = async ({ params }) => {
+const page = async ({ params }: PageProps) => {
   const { slug } = params;
 
   const session = await getAuthSession();

@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import { notFound } from "next/navigation";
 
 import { db } from "@/lib/db";
@@ -13,7 +11,7 @@ interface PageProps {
   };
 }
 
-const page: FC<PageProps> = async ({ params }) => {
+const page = async ({ params }: PageProps) => {
   const subconvo = await db.subconvo.findFirst({
     where: { name: params.slug },
   });

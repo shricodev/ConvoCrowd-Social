@@ -1,6 +1,5 @@
 import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { db } from "@/lib/db";
-import { FC } from "react";
 import PostFeed from "../PostFeed/PostFeed";
 import { Session } from "next-auth";
 
@@ -8,7 +7,7 @@ interface CustomFeedProps {
   session: Session | null;
 }
 
-const CustomFeed: FC<CustomFeedProps> = async ({ session }) => {
+const CustomFeed = async ({ session }: CustomFeedProps) => {
   const followedCommunities = await db.subscription.findMany({
     where: {
       userId: session?.user?.id,

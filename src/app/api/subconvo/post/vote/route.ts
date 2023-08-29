@@ -128,7 +128,7 @@ export async function PATCH(req: Request) {
       });
     }
 
-    return new Response("Could not vote. please try again", {
+    return new Response(JSON.stringify(error), {
       status: StatusCodes.INTERNAL_SERVER_ERROR,
     });
   }

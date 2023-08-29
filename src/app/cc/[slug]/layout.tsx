@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 
 import Link from "next/link";
 import { format } from "date-fns";
@@ -9,7 +9,7 @@ import { INFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { db } from "@/lib/db";
 import { getAuthSession } from "@/lib/auth";
 
-import { Button, buttonVariants } from "@/components/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 import SubscribeLeaveSubconvoToggle from "@/components/SubscribeLeaveSubconvoToggle/SubscribeLeaveSubconvoToggle";
 
 interface LayoutProps {
@@ -19,7 +19,7 @@ interface LayoutProps {
   };
 }
 
-const Layout: FC<LayoutProps> = async ({ children, params: { slug } }) => {
+const Layout = async ({ children, params: { slug } }: LayoutProps) => {
   const session = await getAuthSession();
   const subconvo = await db.subconvo.findFirst({
     where: { name: slug },
@@ -68,7 +68,7 @@ const Layout: FC<LayoutProps> = async ({ children, params: { slug } }) => {
   });
 
   return (
-    <div className="mx-auto h-full max-w-7xl pt-12 sm:container">
+    <div className="mx-auto h-full max-w-7xl pt-10 sm:container">
       <div>
         <div className="grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4">
           <div className="col-span-2 flex flex-col space-y-6">{children}</div>

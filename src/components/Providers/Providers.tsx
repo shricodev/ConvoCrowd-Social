@@ -13,7 +13,7 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
         {children}
       </ThemeProvider>
     </QueryClientProvider>
