@@ -2,21 +2,24 @@
 
 import { FC, useRef, useState } from "react";
 
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { MessageCircle } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useMutation } from "@tanstack/react-query";
 import { CommentVote, User, Comment } from "@prisma/client";
+
+import CommentVotes from "../CommentVotes/CommentVotes";
 
 import UserAvatar from "../UserAvatar/UserAvatar";
 
 import { formatTimeToNow } from "@/lib/utils";
-import CommentVotes from "../CommentVotes/CommentVotes";
-import { Button } from "../ui/Button";
-import { MessageCircle } from "lucide-react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { Label } from "../ui/Label";
-import { Textarea } from "../ui/Textarea";
-import { useMutation } from "@tanstack/react-query";
 import { CommentRequest } from "@/lib/validators/comment";
-import axios from "axios";
+
+import { Label } from "../ui/Label";
+import { Button } from "../ui/Button";
+import { Textarea } from "../ui/Textarea";
+import { toast } from "@/hooks/use-toast";
 
 type ExtendedComment = Comment & {
   votes: CommentVote[];
@@ -52,8 +55,18 @@ const PostComment: FC<PostCommentProps> = ({
       const { data } = await axios.patch("/api/subconvo/post/comment", payload);
       return data;
     },
-    onSuccess: () => {},
-    onError: () => {},
+    onSuccess: () => {
+      router.refresh();
+      setIsReplying(false);
+      setCommentReplyInput("");
+    },
+    onError: (error) => {
+      return toast({
+        title: "Something went wrong",
+        description: "The comment was not posted. Please try again.",
+        variant: "destructive",
+      });
+    },
   });
 
   return (
@@ -67,16 +80,18 @@ const PostComment: FC<PostCommentProps> = ({
           className="h-6 w-6"
         />
         <div className="ml-2 flex items-center gap-x-2">
-          <p className="text-sm font-medium text-gray-900">
+          <p className="text-sm font-medium text-gray-900 dark:text-slate-50">
             u/{comment.author.username}
           </p>
-          <p className="max-h-40 truncate text-xs text-zinc-500">
+          <p className="max-h-40 truncate text-xs text-zinc-500 dark:text-slate-200">
             {formatTimeToNow(new Date(comment.createdAt))}
           </p>
         </div>
       </div>
 
-      <p className="mt-2 text-sm text-zinc-900">{comment.text}</p>
+      <p className="mt-2 text-sm text-zinc-900 dark:text-slate-50">
+        {comment.text}
+      </p>
 
       <div className="flex flex-wrap items-center gap-2">
         <CommentVotes
@@ -92,8 +107,9 @@ const PostComment: FC<PostCommentProps> = ({
           variant="ghost"
           size="xs"
           aria-label="reply"
+          className="dark:text-slate-200 dark:hover:bg-transparent"
         >
-          <MessageCircle className="mr-1.5 h-4 w-4" />
+          <MessageCircle className="mr-1.5 h-4 w-4 dark:text-slate-200" />
           Reply
         </Button>
         {isReplying ? (
@@ -102,7 +118,7 @@ const PostComment: FC<PostCommentProps> = ({
             <div className="mt-2">
               <Textarea
                 id="comment-reply-input"
-                className="max-h-52 w-full resize-y bg-zinc-50"
+                className="max-h-52 w-full resize-y bg-zinc-50 dark:bg-zinc-800"
                 value={commentReplyInput}
                 onChange={(e) => setCommentReplyInput(e.target.value)}
                 rows={1}

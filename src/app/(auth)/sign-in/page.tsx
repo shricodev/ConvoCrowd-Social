@@ -15,7 +15,7 @@ const page: FC = () => {
         <Link
           href="/"
           className={cn(
-            "mb-20 self-start",
+            "mb-20 self-start dark:bg-slate-500 dark:text-slate-50",
             buttonVariants({ variant: "ghost" }),
           )}
         >

@@ -31,7 +31,7 @@ const Post: FC<PostProps> = ({
 }) => {
   const postRef = useRef<HTMLDivElement>(null);
   return (
-    <div className="rounded-md bg-white shadow-md">
+    <div className="rounded-md bg-white shadow-md dark:bg-zinc-700">
       <div className="flex justify-between px-6 py-4">
         <PostVoteClient
           postId={post.id}
@@ -40,12 +40,12 @@ const Post: FC<PostProps> = ({
         />
 
         <div className="w-0 flex-1">
-          <div className="mt-1 max-h-40 text-sm text-gray-500">
+          <div className="mt-1 max-h-40 text-sm text-gray-500 dark:text-slate-200">
             {subconvoName ? (
               <>
                 <a
                   href={`/cc/${subconvoName}`}
-                  className="text-sm text-zinc-900 underline underline-offset-2"
+                  className="text-sm text-zinc-900 underline underline-offset-2 dark:text-slate-50"
                 >
                   cc/{subconvoName}
                 </a>
@@ -57,7 +57,7 @@ const Post: FC<PostProps> = ({
           </div>
 
           <a href={`/cc/${subconvoName}/post/${post.id}`}>
-            <h1 className="py-2 text-lg font-semibold leading-6 text-gray-900">
+            <h1 className="py-2 text-lg font-semibold leading-6 text-gray-900 dark:text-slate-50">
               {post.title}
             </h1>
           </a>
@@ -70,16 +70,16 @@ const Post: FC<PostProps> = ({
 
             {postRef.current?.clientHeight &&
             postRef.current?.clientHeight >= 160 ? (
-              <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-white to-transparent" />
+              <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-white to-transparent dark:from-zinc-700" />
             ) : null}
           </div>
         </div>
       </div>
 
-      <div className="z-20 bg-gray-50 p-4 text-sm sm:px-6">
+      <div className="z-20 bg-gray-50 p-4 text-sm dark:bg-zinc-600 sm:px-6">
         <a
           href={`/cc/${subconvoName}/post/${post.id}`}
-          className="flex w-fit items-center gap-2"
+          className="flex w-fit items-center gap-2 dark:text-slate-50"
         >
           <MessageCircle className="h-4 w-4" />
           {commentCount} comments
