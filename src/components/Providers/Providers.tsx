@@ -10,8 +10,9 @@ interface ProvidersProps {
   children: React.ReactNode;
 }
 
+const queryClient = new QueryClient();
+
 const Providers: FC<ProvidersProps> = ({ children }) => {
-  const queryClient = new QueryClient();
   return (
     <SessionProvider>
       <QueryClientProvider client={queryClient}>
