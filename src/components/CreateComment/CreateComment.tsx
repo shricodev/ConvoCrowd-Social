@@ -62,12 +62,11 @@ const CreateComment: FC<CreateCommentProps> = ({ postId, replyToId }) => {
       <div className="mt-2">
         <Textarea
           id="comment"
-          className="w-full bg-zinc-50"
+          className="max-h-52 w-full resize-y bg-zinc-50"
           value={commentInput}
           onChange={(e) => setCommentInput(e.target.value)}
           rows={1}
           placeholder="What are your thoughts?"
-          
         />
         <div className="mt-2 flex justify-end">
           <Button

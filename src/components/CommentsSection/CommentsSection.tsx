@@ -1,7 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { CommentVoteValidator } from "@/lib/validators/vote";
-import { FC } from "react";
 import PostComment from "../PostComment/PostComment";
 import CreateComment from "../CreateComment/CreateComment";
 
@@ -55,7 +53,12 @@ const CommentsSection = async ({ postId }: CommentsSectionProps) => {
             return (
               <div key={topLevelComment.id} className="flex flex-col">
                 <div className="mb-2">
-                  <PostComment comment={topLevelComment} />
+                  <PostComment
+                    postId={postId}
+                    currentVote={topLevelCommentVote}
+                    comment={topLevelComment}
+                    votesCount={topLevelCommentVotesCount}
+                  />
                 </div>
               </div>
             );
