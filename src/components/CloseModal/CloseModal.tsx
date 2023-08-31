@@ -12,11 +12,11 @@ const CloseModal: FC = () => {
   return (
     <Button
       variant="subtle"
-      className="h-6 w-6 rounded-md p-0 dark:bg-zinc-700"
+      className="h-6 w-6 rounded-md p-0"
       aria-label="close modal"
       onClick={() => router.back()}
     >
-      <X className="h-4 w-4 dark:text-slate-50" />
+      <X className="h-4 w-4" />
     </Button>
   );
 };

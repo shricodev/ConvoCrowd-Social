@@ -105,7 +105,7 @@ const PostFeed: FC<PostFeedProps> = ({
 
       {isFetchingNextPage && (
         <li className="flex justify-center">
-          <Loader2 className="h-8 w-8 animate-spin text-zinc-500 dark:text-slate-200" />
+          <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
         </li>
       )}
     </ul>

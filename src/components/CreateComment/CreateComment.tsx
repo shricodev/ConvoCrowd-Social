@@ -62,7 +62,7 @@ const CreateComment: FC<CreateCommentProps> = ({ postId, replyToId }) => {
       <div className="mt-2">
         <Textarea
           id="comment"
-          className="max-h-52 w-full resize-y bg-zinc-50 dark:bg-zinc-800"
+          className="max-h-52 w-full resize-y bg-zinc-50"
           value={commentInput}
           onChange={(e) => setCommentInput(e.target.value)}
           rows={1}

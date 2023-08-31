@@ -65,12 +65,12 @@ const SubconvoPostPage = async ({ params }: SubconvoPostPageProps) => {
           />
         </Suspense>
 
-        <div className="w-full flex-1 rounded-sm bg-white p-4 dark:bg-zinc-700 sm:w-0">
-          <p className="mt-1 max-h-40 truncate text-xs text-gray-500 dark:text-slate-100">
+        <div className="w-full flex-1 rounded-sm bg-white p-4 sm:w-0">
+          <p className="mt-1 max-h-40 truncate text-xs text-gray-500">
             Posted by u/{post?.author.username ?? cachedPost.authorUsername}{" "}
             {formatTimeToNow(new Date(post?.createdAt ?? cachedPost.createdAt))}
           </p>
-          <h1 className="py-2 text-xl font-semibold leading-6 text-gray-900 dark:text-slate-50">
+          <h1 className="py-2 text-xl font-semibold leading-6 text-gray-900">
             {post?.title ?? cachedPost.title}
           </h1>
 
@@ -79,7 +79,7 @@ const SubconvoPostPage = async ({ params }: SubconvoPostPageProps) => {
           {/* comments section */}
           <Suspense
             fallback={
-              <Loader2 className="mx-auto mt-7 h-6 w-6 animate-spin text-zinc-500 dark:text-slate-200" />
+              <Loader2 className="mx-auto mt-7 h-6 w-6 animate-spin text-zinc-500" />
             }
           >
             <CommentsSection postId={post?.id || cachedPost.id} />
@@ -103,7 +103,7 @@ function PostVoteShell() {
       </div>
 
       {/* vote count */}
-      <div className="py-2 text-center text-sm font-medium text-zinc-900 dark:text-slate-100">
+      <div className="py-2 text-center text-sm font-medium text-zinc-900">
         <Loader2 className="h-3 w-3 animate-spin" />
       </div>
 

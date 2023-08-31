@@ -94,15 +94,14 @@ const PostVoteClient: FC<PostVoteClientProps> = ({
         size="sm"
         variant="ghost"
         aria-label="upvote"
-        className="dark:hover:bg-transparent"
       >
         <ArrowBigUp
-          className={cn("h-5 w-5 text-zinc-700 dark:text-slate-50", {
+          className={cn("h-5 w-5 text-zinc-700", {
             "fill-emerald-500 text-emerald-500": currentVote === "UP",
           })}
         />
       </Button>
-      <p className="py-2 text-center text-sm font-medium text-zinc-900 dark:text-slate-50">
+      <p className="py-2 text-center text-sm font-medium text-zinc-900">
         {voteCount}
       </p>
       <Button
@@ -110,10 +109,9 @@ const PostVoteClient: FC<PostVoteClientProps> = ({
         size="sm"
         variant="ghost"
         aria-label="downvote"
-        className="dark:hover:bg-transparent"
       >
         <ArrowBigDown
-          className={cn("h-5 w-5 text-zinc-700 dark:text-slate-50", {
+          className={cn("h-5 w-5 text-zinc-700", {
             "fill-red-500 text-red-500": currentVote === "DOWN",
           })}
         />

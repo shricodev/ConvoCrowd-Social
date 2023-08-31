@@ -74,14 +74,14 @@ const Layout = async ({ children, params: { slug } }: LayoutProps) => {
           <div className="col-span-2 flex flex-col space-y-6">{children}</div>
 
           {/* info sidebar */}
-          <div className="order-first hidden h-fit overflow-hidden rounded-lg border border-gray-200 dark:border-zinc-700 md:order-last md:block">
+          <div className="order-first hidden h-fit overflow-hidden rounded-lg border border-gray-200 md:order-last md:block">
             <div className="px-6 py-4">
               <p className="py-3 font-semibold">About cc/{subconvo.name}</p>
             </div>
-            <dl className="divide-y divide-gray-100 bg-white px-6 py-4 text-sm leading-6 dark:divide-slate-600 dark:bg-zinc-700">
+            <dl className="divide-y divide-gray-100 bg-white px-6 py-4 text-sm leading-6">
               <div className="flex justify-between gap-x-4 py-3">
-                <dt className="text-gray-500 dark:text-slate-100">Created</dt>
-                <dd className="text-gray-700 dark:text-slate-100">
+                <dt className="text-gray-500">Created</dt>
+                <dd className="text-gray-700">
                   <time dateTime={subconvo.createdAt.toDateString()}>
                     {format(subconvo.createdAt, "MMMM d, yyyy")}
                   </time>
@@ -89,28 +89,22 @@ const Layout = async ({ children, params: { slug } }: LayoutProps) => {
               </div>
 
               <div className="flex justify-between gap-x-4 py-3">
-                <dt className="text-gray-500 dark:text-slate-100">Members</dt>
+                <dt className="text-gray-500">Members</dt>
                 <dd className="text-gray-700">
-                  <div className="text-gray-900 dark:text-slate-50">
-                    {memberCount}
-                  </div>
+                  <div className="text-gray-900">{memberCount}</div>
                 </dd>
               </div>
 
               <div className="flex justify-between gap-x-4 py-3">
-                <dt className="text-gray-500 dark:text-slate-100">Posts</dt>
+                <dt className="text-gray-500">Posts</dt>
                 <dd className="text-gray-700">
-                  <div className="text-gray-900 dark:text-slate-50">
-                    {postCount}
-                  </div>
+                  <div className="text-gray-900">{postCount}</div>
                 </dd>
               </div>
 
               {subconvo.creatorId === session?.user.id ? (
                 <div className="flex justify-between gap-x-4 py-3">
-                  <p className="text-gray-500 dark:text-slate-200">
-                    You created this community
-                  </p>
+                  <p className="text-gray-500">You created this community</p>
                 </div>
               ) : null}
 

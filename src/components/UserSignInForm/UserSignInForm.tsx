@@ -39,7 +39,7 @@ const UserSignInForm: FC<UserSignInFormProps> = ({ className, ...props }) => {
     <div className={cn("flex justify-center", className)} {...props}>
       <Button
         size="sm"
-        className="w-full dark:bg-zinc-700"
+        className="w-full"
         onClick={loginWithGoogle}
         isLoading={isLoading}
       >
