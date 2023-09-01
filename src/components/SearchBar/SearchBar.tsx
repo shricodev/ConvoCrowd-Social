@@ -1,6 +1,14 @@
 "use client";
 
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
+
+import axios from "axios";
+import { Users } from "lucide-react";
+import debounce from "lodash.debounce";
+import { useQuery } from "@tanstack/react-query";
+import { Prisma, Subconvo } from "@prisma/client";
+import { usePathname, useRouter } from "next/navigation";
+
 import {
   Command,
   CommandEmpty,
@@ -9,18 +17,17 @@ import {
   CommandItem,
   CommandList,
 } from "../ui/Command";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { Prisma, Subconvo } from "@prisma/client";
-import { useRouter } from "next/navigation";
-import { Users } from "lucide-react";
-import debounce from "lodash.debounce";
+import { useOnClickOutside } from "@/hooks/use-on-click-outside";
 
 interface SearchBarProps {}
 
 const SearchBar: FC<SearchBarProps> = ({}) => {
   const [searchInput, setSearchInput] = useState<string>("");
   const router = useRouter();
+  const pathname = usePathname();
+
+  // to remove the output of the search when we click outside
+  const commandRef = useRef<HTMLDivElement>(null);
 
   const {
     data: queryResults,
@@ -48,8 +55,19 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useOnClickOutside(commandRef, () => setSearchInput(""));
+
+  // to fix the issue of the search bar output not being removed when we
+  // navigate to subconvos using keydown.
+  useEffect(() => {
+    setSearchInput("");
+  }, [pathname]);
+
   return (
-    <Command className="relative z-50 max-w-2xl overflow-visible rounded-full border">
+    <Command
+      ref={commandRef}
+      className="relative z-50 max-w-2xl overflow-visible rounded-full border"
+    >
       <CommandInput
         value={searchInput}
         onValueChange={(text) => {

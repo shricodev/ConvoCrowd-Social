@@ -5,8 +5,9 @@ import { Post, User, Vote } from "@prisma/client";
 
 import EditorOutput from "../EditorOutput/EditorOutput";
 
-import { formatTimeToNow } from "@/lib/utils";
 import PostVoteClient from "../PostVote/PostVoteClient";
+
+import { formatTimeToNow } from "@/lib/utils";
 
 type PartialVote = Pick<Vote, "type">;
 
@@ -52,7 +53,7 @@ const Post: FC<PostProps> = ({
                 <span className="px-1">•</span>
               </>
             ) : null}
-            <span>Posted by u/{post.author.name}</span>{" "}
+            <span>Posted by u/{post.author.username}</span>{" "}
             {formatTimeToNow(new Date(post.createdAt))}
           </div>
 
