@@ -76,6 +76,7 @@ const SearchBar: FC<SearchBarProps> = ({}) => {
         }}
         placeholder="Search subconvos..."
         className="border-none outline-none ring-0 focus:border-none focus:outline-none"
+        aria-label="Search subconvos"
       />
 
       {/* if we fetched the query but there is not result */}

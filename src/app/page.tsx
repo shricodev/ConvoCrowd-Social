@@ -8,6 +8,8 @@ import CustomFeed from "@/components/CustomFeed/CustomFeed";
 import GeneralFeed from "@/components/GeneralFeed/GeneralFeed";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const session = await getAuthSession();
 
