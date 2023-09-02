@@ -118,7 +118,7 @@ const PostComment: FC<PostCommentProps> = ({
             <div className="mt-2">
               <Textarea
                 id="comment-reply-input"
-                className="max-h-52 w-full resize-y bg-zinc-50 dark:bg-zinc-800"
+                className="max-h-52 w-full resize-y bg-zinc-50 dark:bg-zinc-900"
                 value={commentReplyInput}
                 onChange={(e) => setCommentReplyInput(e.target.value)}
                 rows={1}
@@ -129,6 +129,7 @@ const PostComment: FC<PostCommentProps> = ({
                   tabIndex={-1}
                   variant="subtle"
                   onClick={() => setIsReplying(false)}
+                  className="dark:bg-zinc-700 dark:text-slate-100"
                 >
                   Cancel
                 </Button>
@@ -143,7 +144,7 @@ const PostComment: FC<PostCommentProps> = ({
                   }}
                   disabled={commentReplyInput.length === 0}
                   isLoading={isLoading}
-                  variant="default"
+                  className="dark:bg-zinc-900"
                 >
                   Reply
                 </Button>

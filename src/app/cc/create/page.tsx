@@ -65,7 +65,7 @@ const Page = () => {
 
   return (
     <div className="container mx-auto flex h-full max-w-3xl items-center">
-      <div className="relative h-fit w-full space-y-6 rounded-lg bg-white p-4">
+      <div className="relative h-fit w-full space-y-6 rounded-lg bg-white p-4 dark:bg-black dark:bg-opacity-75">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">Create a community</h1>
         </div>
@@ -74,7 +74,7 @@ const Page = () => {
 
         <div>
           <p className="text-lg font-medium">Name</p>
-          <p className="pb-2 text-xs">
+          <p className="font-sm pb-2 text-base text-slate-400 dark:text-slate-500">
             Community names including capitalization cannot be changed.
           </p>
           <div className="relative">
@@ -90,13 +90,18 @@ const Page = () => {
         </div>
 
         <div className="flex justify-end gap-4">
-          <Button variant={"subtle"} onClick={() => router.back()}>
+          <Button
+            variant={"subtle"}
+            onClick={() => router.back()}
+            className="dark:bg-zinc-800 dark:text-slate-50"
+          >
             Cancel
           </Button>
           <Button
             isLoading={isLoading}
             disabled={input.length === 0}
             onClick={() => createCommunity()}
+            className="dark:bg-zinc-500"
           >
             Create Community
           </Button>

@@ -117,7 +117,9 @@ const UsernameForm: FC<UsernameFormProps> = ({ user }) => {
           </div>
         </CardContent>
         <CardFooter>
-          <Button isLoading={isLoading}>Change username</Button>
+          <Button isLoading={isLoading} className="dark:bg-zinc-800">
+            Change username
+          </Button>
         </CardFooter>
       </Card>
     </form>

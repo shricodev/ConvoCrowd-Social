@@ -103,7 +103,7 @@ const SubscribeLeaveSubconvoToggle: FC<SubscribeLeaveSubconvoToggleProps> = ({
     <Button
       isLoading={isUnsubLoading}
       onClick={() => unsubscribe()}
-      className="mb-4 mt-1 w-full"
+      className="mb-4 mt-1 w-full dark:border-none dark:bg-slate-600"
     >
       Leave Community
     </Button>
@@ -111,7 +111,7 @@ const SubscribeLeaveSubconvoToggle: FC<SubscribeLeaveSubconvoToggleProps> = ({
     <Button
       isLoading={isSubLoading}
       onClick={() => subscribe()}
-      className="mb-4 mt-1 w-full"
+      className="mb-4 mt-1 w-full dark:bg-slate-600"
     >
       Join to Post
     </Button>

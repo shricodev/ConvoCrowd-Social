@@ -28,14 +28,20 @@ function CustomImageRenderer({ data }: any) {
   const src = data.file.url;
   return (
     <div className="relative min-h-[15rem] w-full">
-      <Image alt="Post Picture" className="object-contain" fill src={src} />
+      <Image
+        alt="Post Picture"
+        className="object-contain"
+        fill
+        loading="lazy"
+        src={src}
+      />
     </div>
   );
 }
 
 function CustomCodeRenderer({ data }: any) {
   return (
-    <pre className="overflow-scroll rounded-md bg-gray-800 p-4">
+    <pre className="overflow-scroll rounded-md bg-zinc-900 p-4">
       <code className="text-sm text-gray-100">{data.code}</code>
     </pre>
   );

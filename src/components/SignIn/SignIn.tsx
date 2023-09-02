@@ -25,11 +25,11 @@ const SignIn: FC<SignInProps> = ({ isModal = false }) => {
         {/* form */}
         <UserSignInForm />
 
-        <p className="px-8 pt-1 text-center text-sm text-zinc-700">
+        <p className="px-8 pt-1 text-center text-sm text-zinc-700 dark:text-slate-100">
           New to ConvoCrowd?{" "}
           <Link
             href="/sign-up"
-            className="text-sm underline underline-offset-4 hover:text-zinc-800"
+            className="text-sm underline underline-offset-4 hover:text-zinc-800 dark:hover:text-slate-200"
             // adding this will replace the history stack instead of adding to the history stack.
             // so our modal behaviour works as expected.
             replace={isModal}

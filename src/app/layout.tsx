@@ -23,12 +23,18 @@ export default function RootLayout({
   authModal: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn("light bg-white text-slate-900 antialiased")}>
+    <html
+      lang="en"
+      className={cn("light bg-white text-slate-900 antialiased")}
+      suppressHydrationWarning
+    >
       <body
         className={cn(
-          "min-h-screen bg-slate-50 pt-10 antialiased",
+          "min-h-screen bg-slate-50 pt-10 antialiased dark:bg-zinc-900 dark:text-slate-50",
           inter.className,
         )}
+        // for next theme to not throw hydration warning
+        suppressHydrationWarning
       >
         <Providers>
           <Navbar />

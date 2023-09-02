@@ -81,17 +81,19 @@ const CommentVotes: FC<CommentVotesProps> = ({
       <Button
         onClick={() => vote("UP")}
         size="sm"
-        variant="ghost"
+        variant="link"
         aria-label="upvote"
+        className="dark:hover:bg-zinc-900"
       >
         <ArrowBigUp
-          className={cn("h-5 w-5 text-zinc-700", {
-            "fill-emerald-500 text-emerald-500": currentVote?.type === "UP",
+          className={cn("h-5 w-5 text-zinc-700 dark:text-slate-200", {
+            "fill-emerald-500 text-emerald-500 dark:text-emerald-500":
+              currentVote?.type === "UP",
           })}
         />
       </Button>
 
-      <p className="py-2 text-center text-sm font-medium text-zinc-900">
+      <p className="py-2 text-center text-sm font-medium text-zinc-900 dark:text-slate-100">
         {voteCount}
       </p>
 
@@ -100,11 +102,16 @@ const CommentVotes: FC<CommentVotesProps> = ({
         size="sm"
         variant="ghost"
         aria-label="downvote"
+        className="dark:hover:bg-zinc-900"
       >
         <ArrowBigDown
-          className={cn("h-5 w-5 text-zinc-700", {
-            "fill-red-500 text-red-500": currentVote?.type === "DOWN",
-          })}
+          className={cn(
+            "dark:hover: h-5 w-5 text-zinc-700 dark:text-slate-200",
+            {
+              "fill-red-500 text-red-500 dark:text-red-500":
+                currentVote?.type === "DOWN",
+            },
+          )}
         />
       </Button>
     </div>

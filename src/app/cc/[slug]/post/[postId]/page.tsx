@@ -9,7 +9,7 @@ import { Suspense } from "react";
 import { buttonVariants } from "@/components/ui/Button";
 import { ArrowBigDown, ArrowBigUp, Loader2 } from "lucide-react";
 import PostVoteServer from "@/components/PostVote/PostVoteServer";
-import { formatTimeToNow } from "@/lib/utils";
+import { cn, formatTimeToNow } from "@/lib/utils";
 import EditorOutput from "@/components/EditorOutput/EditorOutput";
 import CommentsSection from "@/components/CommentsSection/CommentsSection";
 
@@ -65,12 +65,12 @@ const SubconvoPostPage = async ({ params }: SubconvoPostPageProps) => {
           />
         </Suspense>
 
-        <div className="w-full flex-1 rounded-sm bg-white p-4 sm:w-0">
-          <p className="mt-1 max-h-40 truncate text-xs text-gray-500">
+        <div className="w-full flex-1 rounded-sm bg-white p-4 dark:bg-zinc-800 sm:w-0">
+          <p className="mt-1 max-h-40 truncate text-xs text-gray-500 dark:text-slate-400">
             Posted by u/{post?.author.username ?? cachedPost.authorUsername}{" "}
             {formatTimeToNow(new Date(post?.createdAt ?? cachedPost.createdAt))}
           </p>
-          <h1 className="py-2 text-xl font-semibold leading-6 text-gray-900">
+          <h1 className="py-2 text-xl font-semibold leading-6 text-gray-900 dark:text-slate-100">
             {post?.title ?? cachedPost.title}
           </h1>
 
@@ -79,7 +79,7 @@ const SubconvoPostPage = async ({ params }: SubconvoPostPageProps) => {
           {/* comments section */}
           <Suspense
             fallback={
-              <Loader2 className="mx-auto mt-7 h-6 w-6 animate-spin text-zinc-500" />
+              <Loader2 className="mx-auto mt-7 h-6 w-6 animate-spin text-zinc-500 dark:text-zinc-300" />
             }
           >
             <CommentsSection postId={post?.id || cachedPost.id} />
@@ -95,25 +95,31 @@ function PostVoteShell() {
     <div className="flex w-20 flex-col items-center pr-6">
       {/* upvote */}
       <div
-        className={buttonVariants({
-          variant: "ghost",
-        })}
+        className={cn(
+          "dark:hover:bg-zinc-800",
+          buttonVariants({
+            variant: "ghost",
+          }),
+        )}
       >
-        <ArrowBigUp className="h-5 w-5 text-zinc-700" />
+        <ArrowBigUp className="h-5 w-5 text-zinc-700 dark:text-slate-200" />
       </div>
 
       {/* vote count */}
-      <div className="py-2 text-center text-sm font-medium text-zinc-900">
+      <div className="py-2 text-center text-sm font-medium text-zinc-900 dark:text-zinc-300">
         <Loader2 className="h-3 w-3 animate-spin" />
       </div>
 
       {/* downvote */}
       <div
-        className={buttonVariants({
-          variant: "ghost",
-        })}
+        className={cn(
+          "dark:hover:bg-zinc-800",
+          buttonVariants({
+            variant: "ghost",
+          }),
+        )}
       >
-        <ArrowBigDown className="h-5 w-5 text-zinc-700" />
+        <ArrowBigDown className="h-5 w-5 text-zinc-700 dark:text-slate-200" />
       </div>
     </div>
   );

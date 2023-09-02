@@ -25,7 +25,7 @@ const UserAccountDropdown: FC<UserAccountDropdownProps> = ({ user }) => {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
-          className="h-8 w-8 sm:h-6 sm:w-6"
+          className="h-10 w-10 sm:h-7 sm:w-7"
           user={{
             name: user.name || null,
             image: user.image || null,

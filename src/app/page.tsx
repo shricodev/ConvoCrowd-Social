@@ -30,8 +30,8 @@ export default async function Home() {
         {session?.user ? <CustomFeed session={session} /> : <GeneralFeed />}
 
         {/* subconvo info */}
-        <div className="order-first h-fit overflow-hidden rounded-lg border border-gray-200 shadow md:order-last">
-          <div className="bg-gray-200 px-6 py-4">
+        <div className="order-first h-fit overflow-hidden rounded-lg border border-gray-200 shadow dark:border-zinc-800 md:order-last">
+          <div className="bg-gray-200 px-6 py-4 dark:bg-zinc-800">
             <p className="flex items-center gap-1.5 py-3 font-semibold">
               <Tent className="h-6 w-6" />
               Home
@@ -48,7 +48,7 @@ export default async function Home() {
 
             <Link
               className={buttonVariants({
-                className: "mb-6 mt-4 w-full",
+                className: "mb-6 mt-4 w-full dark:border-none dark:bg-zinc-800",
               })}
               href="/cc/create"
             >

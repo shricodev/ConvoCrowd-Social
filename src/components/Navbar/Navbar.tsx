@@ -15,7 +15,7 @@ const Navbar = async () => {
   const session = await getAuthSession();
 
   return (
-    <div className="fixed inset-x-0 top-0 z-[10] h-fit border-b border-zinc-300 bg-zinc-100 py-3">
+    <div className="fixed inset-x-0 top-0 z-[10] h-fit border-b border-zinc-300 bg-zinc-100 py-3 dark:border-zinc-700 dark:bg-zinc-900">
       <div className="container mx-auto flex h-full max-w-7xl items-center justify-between gap-2">
         <div className="flex items-center gap-4">
           {/* logo */}
@@ -38,7 +38,10 @@ const Navbar = async () => {
           ) : (
             <Link
               href="/sign-in"
-              className={cn("select-none", buttonVariants())}
+              className={cn(
+                "select-none dark:bg-slate-700 dark:hover:bg-opacity-70",
+                buttonVariants(),
+              )}
             >
               Sign In
             </Link>
