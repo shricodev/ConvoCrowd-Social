@@ -4,194 +4,192 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-importers:
+dependencies:
+  '@editorjs/code':
+    specifier: ^2.8.0
+    version: 2.8.0
+  '@editorjs/editorjs':
+    specifier: ^2.28.0
+    version: 2.28.0
+  '@editorjs/embed':
+    specifier: ^2.5.3
+    version: 2.5.3
+  '@editorjs/header':
+    specifier: ^2.7.0
+    version: 2.7.0
+  '@editorjs/image':
+    specifier: ^2.8.1
+    version: 2.8.1
+  '@editorjs/inline-code':
+    specifier: ^1.4.0
+    version: 1.4.0
+  '@editorjs/link':
+    specifier: ^2.5.0
+    version: 2.5.0
+  '@editorjs/list':
+    specifier: ^1.8.0
+    version: 1.8.0
+  '@editorjs/paragraph':
+    specifier: ^2.10.0
+    version: 2.10.0
+  '@editorjs/table':
+    specifier: ^2.2.2
+    version: 2.2.2
+  '@hookform/resolvers':
+    specifier: ^3.3.0
+    version: 3.3.1(react-hook-form@7.46.1)
+  '@mantine/hooks':
+    specifier: ^6.0.19
+    version: 6.0.20(react@18.2.0)
+  '@next-auth/prisma-adapter':
+    specifier: ^1.0.7
+    version: 1.0.7(@prisma/client@5.2.0)(next-auth@4.23.1)
+  '@prisma/client':
+    specifier: ^5.2.0
+    version: 5.2.0(prisma@5.2.0)
+  '@radix-ui/react-avatar':
+    specifier: ^1.0.3
+    version: 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
+  '@radix-ui/react-dialog':
+    specifier: ^1.0.4
+    version: 1.0.4(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
+  '@radix-ui/react-dropdown-menu':
+    specifier: ^2.0.5
+    version: 2.0.5(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
+  '@radix-ui/react-label':
+    specifier: ^2.0.2
+    version: 2.0.2(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
+  '@radix-ui/react-slot':
+    specifier: ^1.0.2
+    version: 1.0.2(@types/react@18.2.20)(react@18.2.0)
+  '@radix-ui/react-toast':
+    specifier: ^1.1.4
+    version: 1.1.4(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
+  '@tailwindcss/typography':
+    specifier: ^0.5.9
+    version: 0.5.10(tailwindcss@3.3.3)
+  '@tanstack/react-query':
+    specifier: ^4.33.0
+    version: 4.35.0(react-dom@18.2.0)(react@18.2.0)
+  '@types/node':
+    specifier: 20.5.2
+    version: 20.5.2
+  '@types/react':
+    specifier: 18.2.20
+    version: 18.2.20
+  '@types/react-dom':
+    specifier: 18.2.7
+    version: 18.2.7
+  '@uploadthing/react':
+    specifier: 4.0.0
+    version: 4.0.0(react-dropzone@14.2.3)(react@18.2.0)(uploadthing@4.0.0)
+  '@upstash/redis':
+    specifier: ^1.22.0
+    version: 1.22.0
+  autoprefixer:
+    specifier: 10.4.15
+    version: 10.4.15(postcss@8.4.28)
+  axios:
+    specifier: ^1.5.0
+    version: 1.5.0
+  class-variance-authority:
+    specifier: ^0.7.0
+    version: 0.7.0
+  clsx:
+    specifier: ^2.0.0
+    version: 2.0.0
+  cmdk:
+    specifier: ^0.2.0
+    version: 0.2.0(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
+  date-fns:
+    specifier: ^2.30.0
+    version: 2.30.0
+  editorjs-react-renderer:
+    specifier: ^3.5.1
+    version: 3.5.1
+  eslint:
+    specifier: 8.48.0
+    version: 8.48.0
+  eslint-config-next:
+    specifier: 13.4.19
+    version: 13.4.19(eslint@8.48.0)(typescript@5.1.6)
+  http-status-codes:
+    specifier: ^2.2.0
+    version: 2.2.0
+  lodash.debounce:
+    specifier: ^4.0.8
+    version: 4.0.8
+  lucide-react:
+    specifier: ^0.274.0
+    version: 0.274.0(react@18.2.0)
+  next:
+    specifier: ^13.4.19
+    version: 13.4.19(react-dom@18.2.0)(react@18.2.0)
+  next-auth:
+    specifier: ^4.23.1
+    version: 4.23.1(next@13.4.19)(react-dom@18.2.0)(react@18.2.0)
+  next-themes:
+    specifier: ^0.2.1
+    version: 0.2.1(next@13.4.19)(react-dom@18.2.0)(react@18.2.0)
+  postcss:
+    specifier: 8.4.28
+    version: 8.4.28
+  prisma:
+    specifier: ^5.2.0
+    version: 5.2.0
+  react:
+    specifier: 18.2.0
+    version: 18.2.0
+  react-dom:
+    specifier: 18.2.0
+    version: 18.2.0(react@18.2.0)
+  react-dropzone:
+    specifier: 14.2.3
+    version: 14.2.3(react@18.2.0)
+  react-hook-form:
+    specifier: ^7.45.4
+    version: 7.46.1(react@18.2.0)
+  react-textarea-autosize:
+    specifier: ^8.5.3
+    version: 8.5.3(@types/react@18.2.20)(react@18.2.0)
+  sharp:
+    specifier: ^0.32.5
+    version: 0.32.5
+  tailwind-merge:
+    specifier: ^1.14.0
+    version: 1.14.0
+  tailwindcss:
+    specifier: 3.3.3
+    version: 3.3.3
+  tailwindcss-animate:
+    specifier: ^1.0.6
+    version: 1.0.7(tailwindcss@3.3.3)
+  typescript:
+    specifier: 5.1.6
+    version: 5.1.6
+  unique-username-generator:
+    specifier: ^1.2.0
+    version: 1.2.0
+  uploadthing:
+    specifier: 4.0.0
+    version: 4.0.0
+  zod:
+    specifier: ^3.22.2
+    version: 3.22.2
 
-  .:
-    dependencies:
-      '@editorjs/code':
-        specifier: ^2.8.0
-        version: 2.8.0
-      '@editorjs/editorjs':
-        specifier: ^2.28.0
-        version: 2.28.0
-      '@editorjs/embed':
-        specifier: ^2.5.3
-        version: 2.5.3
-      '@editorjs/header':
-        specifier: ^2.7.0
-        version: 2.7.0
-      '@editorjs/image':
-        specifier: ^2.8.1
-        version: 2.8.1
-      '@editorjs/inline-code':
-        specifier: ^1.4.0
-        version: 1.4.0
-      '@editorjs/link':
-        specifier: ^2.5.0
-        version: 2.5.0
-      '@editorjs/list':
-        specifier: ^1.8.0
-        version: 1.8.0
-      '@editorjs/paragraph':
-        specifier: ^2.10.0
-        version: 2.10.0
-      '@editorjs/table':
-        specifier: ^2.2.2
-        version: 2.2.2
-      '@hookform/resolvers':
-        specifier: ^3.3.0
-        version: 3.3.1(react-hook-form@7.46.1)
-      '@mantine/hooks':
-        specifier: ^6.0.19
-        version: 6.0.20(react@18.2.0)
-      '@next-auth/prisma-adapter':
-        specifier: ^1.0.7
-        version: 1.0.7(@prisma/client@5.2.0)(next-auth@4.23.1)
-      '@prisma/client':
-        specifier: ^5.2.0
-        version: 5.2.0(prisma@5.2.0)
-      '@radix-ui/react-avatar':
-        specifier: ^1.0.3
-        version: 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-dialog':
-        specifier: ^1.0.4
-        version: 1.0.4(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-dropdown-menu':
-        specifier: ^2.0.5
-        version: 2.0.5(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-label':
-        specifier: ^2.0.2
-        version: 2.0.2(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-slot':
-        specifier: ^1.0.2
-        version: 1.0.2(@types/react@18.2.20)(react@18.2.0)
-      '@radix-ui/react-toast':
-        specifier: ^1.1.4
-        version: 1.1.4(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
-      '@tailwindcss/typography':
-        specifier: ^0.5.9
-        version: 0.5.10(tailwindcss@3.3.3)
-      '@tanstack/react-query':
-        specifier: ^4.33.0
-        version: 4.35.0(react-dom@18.2.0)(react@18.2.0)
-      '@types/node':
-        specifier: 20.5.2
-        version: 20.5.2
-      '@types/react':
-        specifier: 18.2.20
-        version: 18.2.20
-      '@types/react-dom':
-        specifier: 18.2.7
-        version: 18.2.7
-      '@uploadthing/react':
-        specifier: 4.0.0
-        version: 4.0.0(react-dropzone@14.2.3)(react@18.2.0)(uploadthing@4.0.0)
-      '@upstash/redis':
-        specifier: ^1.22.0
-        version: 1.22.0
-      autoprefixer:
-        specifier: 10.4.15
-        version: 10.4.15(postcss@8.4.28)
-      axios:
-        specifier: ^1.5.0
-        version: 1.5.0
-      class-variance-authority:
-        specifier: ^0.7.0
-        version: 0.7.0
-      clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
-      cmdk:
-        specifier: ^0.2.0
-        version: 0.2.0(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
-      date-fns:
-        specifier: ^2.30.0
-        version: 2.30.0
-      editorjs-react-renderer:
-        specifier: ^3.5.1
-        version: 3.5.1
-      eslint:
-        specifier: 8.48.0
-        version: 8.48.0
-      eslint-config-next:
-        specifier: 13.4.19
-        version: 13.4.19(eslint@8.48.0)(typescript@5.1.6)
-      http-status-codes:
-        specifier: ^2.2.0
-        version: 2.2.0
-      lodash.debounce:
-        specifier: ^4.0.8
-        version: 4.0.8
-      lucide-react:
-        specifier: ^0.268.0
-        version: 0.268.0(react@18.2.0)
-      next:
-        specifier: ^13.4.19
-        version: 13.4.19(react-dom@18.2.0)(react@18.2.0)
-      next-auth:
-        specifier: ^4.23.1
-        version: 4.23.1(next@13.4.19)(react-dom@18.2.0)(react@18.2.0)
-      next-themes:
-        specifier: ^0.2.1
-        version: 0.2.1(next@13.4.19)(react-dom@18.2.0)(react@18.2.0)
-      postcss:
-        specifier: 8.4.28
-        version: 8.4.28
-      prisma:
-        specifier: ^5.2.0
-        version: 5.2.0
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: 18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-dropzone:
-        specifier: 14.2.3
-        version: 14.2.3(react@18.2.0)
-      react-hook-form:
-        specifier: ^7.45.4
-        version: 7.46.1(react@18.2.0)
-      react-textarea-autosize:
-        specifier: ^8.5.3
-        version: 8.5.3(@types/react@18.2.20)(react@18.2.0)
-      sharp:
-        specifier: ^0.32.5
-        version: 0.32.5
-      tailwind-merge:
-        specifier: ^1.14.0
-        version: 1.14.0
-      tailwindcss:
-        specifier: 3.3.3
-        version: 3.3.3
-      tailwindcss-animate:
-        specifier: ^1.0.6
-        version: 1.0.7(tailwindcss@3.3.3)
-      typescript:
-        specifier: 5.1.6
-        version: 5.1.6
-      unique-username-generator:
-        specifier: ^1.2.0
-        version: 1.2.0
-      uploadthing:
-        specifier: 4.0.0
-        version: 4.0.0
-      zod:
-        specifier: ^3.22.2
-        version: 3.22.2
-    devDependencies:
-      '@types/editorjs__header':
-        specifier: ^2.6.0
-        version: 2.6.0
-      '@types/lodash.debounce':
-        specifier: ^4.0.7
-        version: 4.0.7
-      prettier:
-        specifier: ^3.0.2
-        version: 3.0.3
-      prettier-plugin-tailwindcss:
-        specifier: ^0.5.3
-        version: 0.5.4(prettier@3.0.3)
+devDependencies:
+  '@types/editorjs__header':
+    specifier: ^2.6.0
+    version: 2.6.0
+  '@types/lodash.debounce':
+    specifier: ^4.0.7
+    version: 4.0.7
+  prettier:
+    specifier: ^3.0.2
+    version: 3.0.3
+  prettier-plugin-tailwindcss:
+    specifier: ^0.5.3
+    version: 0.5.4(prettier@3.0.3)
 
 packages:
 
@@ -3175,8 +3173,8 @@ packages:
       yallist: 4.0.0
     dev: false
 
-  /lucide-react@0.268.0(react@18.2.0):
-    resolution: {integrity: sha512-XP/xY3ASJAViqNqVnDRcEfdxfRB7uNST8sqTLwZhL983ikmHMQ7qQak7ZxrnXOVhB3QDBawdr3ANq0P+iWHP/g==}
+  /lucide-react@0.274.0(react@18.2.0):
+    resolution: {integrity: sha512-qiWcojRXEwDiSimMX1+arnxha+ROJzZjJaVvCC0rsG6a9pUPjZePXSq7em4ZKMp0NDm1hyzPNkM7UaWC3LU2AA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
