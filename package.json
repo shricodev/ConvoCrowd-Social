@@ -48,7 +48,7 @@
     "eslint-config-next": "13.4.19",
     "http-status-codes": "^2.2.0",
     "lodash.debounce": "^4.0.8",
-    "lucide-react": "^0.268.0",
+    "lucide-react": "^0.291.0",
     "next": "^13.4.19",
     "next-auth": "^4.23.1",
     "next-themes": "^0.2.1",
